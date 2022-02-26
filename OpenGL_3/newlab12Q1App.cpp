@@ -13,7 +13,7 @@ void NewLab12Q1App::Init()
 
 
 	front = new CubeLab12();
-	front->SetColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
+	front->SetColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
 	front->SetTranslate(glm::vec3(0.0, 0.0, 6.5));
 	front->SetScale(glm::vec3(5.0, 1.0, 0.1));
 
