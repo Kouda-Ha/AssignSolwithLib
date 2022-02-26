@@ -15,7 +15,7 @@ class ObstaclesLab12 : public ObjectBaseLab12
 
 public:
 	ObstaclesLab12();
-
+	void Collided(glm::vec3 posOfGun);
 	void Update(float deltaT);
 
 };

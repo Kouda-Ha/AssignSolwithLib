@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GunLab12.h"
-
+#include <iostream>
 
 
 
@@ -9,6 +9,7 @@ GunLab12::GunLab12()
 
 	// build a set of 2 cubes
 	float y = 0.0f;
+
 	for (int i = 0; i < 2; i++)
 	{
 		CubeLab12 cube = CubeLab12();
@@ -43,6 +44,17 @@ void GunLab12::SetTranslate(glm::vec3 trans)
 		cubeArray[0].SetTranslate(trans);
 	}
 
+}
+
+void GunLab12::GunPosition(glm::vec3& trans)
+{
+	glm::mat4 transfm = GetTransform();
+	glm::mat4 c1transfm = cubeArray[1].GetTransform();
+
+	glm::vec3 transf = glm::vec3(transfm[3][0], transfm[3][1], transfm[3][2]);
+	glm::vec3 c1transf = glm::vec3(c1transfm[3][0], c1transfm[3][1], c1transfm[3][2]);
+
+	trans = transf + c1transf;
 }
 
 // responses to the passing of time. Called with before each draw()

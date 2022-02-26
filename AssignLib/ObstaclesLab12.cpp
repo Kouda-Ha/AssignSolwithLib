@@ -2,8 +2,6 @@
 #include "ObstaclesLab12.h"
 #include <random>
 
-
-
 ObstaclesLab12::ObstaclesLab12()
 {
 
@@ -41,6 +39,13 @@ void ObstaclesLab12::SetUp()
 
 	}
 	NullTransform(); // this just ensures we've got a base transform to manipulate
+}
+
+// Checking if the bullets or player collided with an obstacle
+void ObstaclesLab12::Collided(glm::vec3 posOfGun)
+{
+//	posOfGun
+
 }
 
 

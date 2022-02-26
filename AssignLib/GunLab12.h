@@ -14,7 +14,7 @@ public:
 
 	void Fire();
 	void Update(float deltaT);
-
+	void GunPosition(glm::vec3& trans);
 	void SetTranslate(glm::vec3 trans);
 
 };
