@@ -29,6 +29,9 @@
     <None Include="Shaders\lab12_vertex-shader.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\..\..\..\Desktop\CG_openGLlabs_week5\newlab15_q1\Fonts\lucida32.fnt">
+      <Filter>Resource Files\Fonts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -43,5 +46,13 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{0f888ff1-1bf1-4ab4-b702-09a4fa6baa0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Fonts">
+      <UniqueIdentifier>{cfb92bb4-0d4f-4a0f-a7ca-d1e5cfd04da0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\CG_openGLlabs_week5\newlab15_q1\Fonts\lucida32_0.png">
+      <Filter>Resource Files\Fonts</Filter>
+    </Image>
   </ItemGroup>
 </Project>

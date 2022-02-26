@@ -13,10 +13,10 @@ public:
 	GunLab12();
 
 	void Fire();
+	void Hit();
 	void Update(float deltaT);
 	void GunPosition(glm::vec3& trans);
+	void PlayerPosition(glm::vec3& trans);
 	void SetTranslate(glm::vec3 trans);
-	/*void SetTransform(glm::mat4& transform);
-	glm::mat4 GetTransform();*/
 
 };

@@ -104,6 +104,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\Desktop\CG_openGLlabs_week5\newlab15_q1\Fonts\lucida32.fnt" />
     <None Include="Shaders\lab12_fragment-shader.glsl" />
     <None Include="Shaders\lab12_vertex-shader.glsl" />
   </ItemGroup>
@@ -114,6 +115,9 @@
     <ProjectReference Include="..\SOF\SOF.vcxproj">
       <Project>{94bf6170-cdc3-4dcc-9641-9415724a2420}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\CG_openGLlabs_week5\newlab15_q1\Fonts\lucida32_0.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,7 +20,6 @@ GunLab12::GunLab12()
 		cubeArray.push_back(cube);
 		y += 0.8f;
 	}
-
 	NullTransform(); // this just ensures we've got a base transform to manipulate
 }
 
@@ -28,6 +27,13 @@ void GunLab12::Fire()
 {
 	if (!animate)
 		fire = true;
+}
+
+void GunLab12::Hit()
+{
+	NullTransform();
+	SetTranslate(glm::vec3(0.0, 0.0, 5.8));
+
 }
 
 void GunLab12::SetTranslate(glm::vec3 trans)
@@ -38,31 +44,23 @@ void GunLab12::SetTranslate(glm::vec3 trans)
 	{
 		cubeArray[0].SetTranslate(trans);
 	}
-
 }
-//void GunLab12::SetTransform(glm::mat4& trans)
-//{
-//	if (!fire)
-//		ObjectBaseLab12::SetTransform(trans);
-//	else
-//	{
-//		cubeArray[0].SetTransform(trans);
-//	}
-//}
-//glm::mat4 GunLab12::GetTransform()
-//{
-//	if (!fire)
-//		return ObjectBaseLab12::GetTransform();
-//	else
-//	{
-//		return cubeArray[0].GetTransform();
-//	}
-//}
 
 void GunLab12::GunPosition(glm::vec3& trans)
 {
 	glm::mat4 transfm = GetTransform();
 	glm::mat4 c1transfm = cubeArray[1].GetTransform();
+
+	glm::vec3 transf = glm::vec3(transfm[3][0], transfm[3][1], transfm[3][2]);
+	glm::vec3 c1transf = glm::vec3(c1transfm[3][0], c1transfm[3][1], c1transfm[3][2]);
+
+	trans = transf + c1transf;
+}
+
+void GunLab12::PlayerPosition(glm::vec3& trans)
+{
+	glm::mat4 transfm = GetTransform();
+	glm::mat4 c1transfm = cubeArray[0].GetTransform();
 
 	glm::vec3 transf = glm::vec3(transfm[3][0], transfm[3][1], transfm[3][2]);
 	glm::vec3 c1transf = glm::vec3(c1transfm[3][0], c1transfm[3][1], c1transfm[3][2]);

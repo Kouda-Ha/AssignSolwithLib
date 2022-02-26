@@ -5,6 +5,8 @@
 
 void NewLab12Q1App::Init()
 {
+	fontPlot = new SOF::FontPlot("Fonts/lucida32");
+
 	frame = new FrameLab12();
 
 	floor = new MovingFloorLab12();
@@ -49,27 +51,46 @@ void NewLab12Q1App::Draw()
 	back->Draw(view, proj);
 
 	gun->Draw(view, proj);
-
 	obstacles->Draw(view, proj);
 
+	if (win)
+	{
+		fontPlot->DrawString(textXPos, textYPos, textToDraw, textColor);
+	}
 }
-
 
 // responses to the passing of time. Called with before each draw()
 void NewLab12Q1App::Update(float deltaT) { 
+	if (win)
+	{
+		return; // If reach end of tredmill, game ends.
+	}
 
 	floor->Update(deltaT);
 	gun->Update(deltaT);
 	glm::vec3 posOfGun = glm::vec3();
+	glm::vec3 posOfPlayer = glm::vec3();
 	gun->GunPosition(posOfGun);
+	gun->PlayerPosition(posOfPlayer);
 	obstacles->Update(deltaT);
 	obstacles->Collided(posOfGun, glm::vec3(0.4, 0.4, 0.5));
+	if (obstacles->CollidePlayer(posOfPlayer, glm::vec3(0.4, 0.4, 0.5)))
+	{
+		gun->Hit(); // if gun(player) collides with obstacle, reset gun(player) position to back of platform
+		obstacles->Reset(); // obstacle destroy, respawn at the back (stops jittering Gun(player) until obstacle leaves hit area)
+		// score --
+	}
+
+	if (posOfPlayer[2] < -10)
+	{
+		win = true;
+	}
 
 }
 
 void NewLab12Q1App::KeyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
-
+	// Moving camera angle
 	switch (key) {
 	case GLFW_KEY_A:
 		cameraPos[0] += 0.5;
@@ -123,17 +144,10 @@ void NewLab12Q1App::KeyCallback(GLFWwindow* window, int key, int scanCode, int a
 		gun->SetTranslate(glm::vec3(0.0, 0.0, -0.1));
 		break;
 
+	// Fire gun bullet
 	case GLFW_KEY_SPACE:
 		gun->Fire();
 		break;
 	}
 
-	
-
-//	std::cout << cameraPos[0] << " " << cameraPos[1] << " " << cameraPos[2] << std::endl;
-//	std::cout << cameraDir[0] << " " << cameraDir[1] << " " << cameraDir[2] << std::endl;
-
 }
-
-
-
