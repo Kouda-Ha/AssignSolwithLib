@@ -2,7 +2,6 @@
 #include "CubeLab12.h"
 
 // statics
-
 SOF::ShaderProgram *CubeLab12::pShader = nullptr;
 SOF::Geometry *CubeLab12::pGeometry = nullptr;
 
@@ -47,13 +46,10 @@ CubeLab12::CubeLab12()
 			vertexColor.push_back(vertexColors[triangles[i]]);
 		}
 
-
 		pGeometry->AddAttribute(vertexPos, "vertexPos");
 		pGeometry->AddAttribute(vertexColor, "vertexColor");
 		pGeometry->Finalize(pShader);
-
 	}
-
 }
 
 void CubeLab12::SetRender(const GLboolean r)
@@ -80,7 +76,6 @@ void CubeLab12::preDraw(const glm::mat4 &view, const glm::mat4 &proj)
 	else
 		pShader->SetUniformInt("useFixedColor", 0);
 
-
 	// camera
 	glm::vec3 cameraPosition = (glm::vec3)(glm::inverse(view)[3]);
 	pShader->SetUniformMat4("vpm", proj*view);
@@ -92,11 +87,8 @@ void CubeLab12::Draw(const glm::mat4 &view, const glm::mat4 &proj)
 	Draw(view, proj, b);
 }
 
-
-
 void CubeLab12::Draw(const glm::mat4 &view, const glm::mat4 &proj, const glm::mat4 &base)
 {
-
 	preDraw(view, proj);
 
 	// model
@@ -130,9 +122,7 @@ void CubeLab12::DrawLines(const glm::mat4 &view, const glm::mat4 &proj, const gl
 	pShader->SetUniformInt("useFixedColor", 0);
 	// set the colour of the lines drawn in wire-frame mode to black
 	pShader->SetUniformVec4("fixedColor", cubeColor);
-
 }
-
 
 void CubeLab12::SetColor(const glm::vec4 &color)
 {

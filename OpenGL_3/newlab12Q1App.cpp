@@ -3,7 +3,6 @@
 #include <random>
 #include <iostream>
 
-
 void NewLab12Q1App::Init()
 {
 	frame = new FrameLab12();
@@ -41,7 +40,6 @@ void NewLab12Q1App::Draw()
 	glm::mat4 view = glm::lookAt(cameraPos, cameraDir, glm::vec3(0.0f, 1.0f, 0.0f));
 	glm::mat4 proj = glm::perspective(glm::radians(70.0f), (float)SOF::Window::GetHeight() / SOF::Window::GetWidth(), 0.1f, 1000.0f);
 
-
 	//frame->Draw(view, proj);
 
 	floor->Draw(view, proj);
@@ -60,15 +58,12 @@ void NewLab12Q1App::Draw()
 // responses to the passing of time. Called with before each draw()
 void NewLab12Q1App::Update(float deltaT) { 
 
-
 	floor->Update(deltaT);
 	gun->Update(deltaT);
 	glm::vec3 posOfGun = glm::vec3();
 	gun->GunPosition(posOfGun);
 	obstacles->Update(deltaT);
-	std::cout << posOfGun[0] << " " << posOfGun[1] << " " << posOfGun[2] << std::endl;
-
-	obstacles->Collided(posOfGun);
+	obstacles->Collided(posOfGun, glm::vec3(0.4, 0.4, 0.5));
 
 }
 
@@ -122,10 +117,10 @@ void NewLab12Q1App::KeyCallback(GLFWwindow* window, int key, int scanCode, int a
 		gun->SetTranslate(glm::vec3(0.1, 0.0, 0.0));
 		break;
 	case GLFW_KEY_DOWN:
-		gun->SetTranslate(glm::vec3(0.0, -0.1, 0.0));
+		gun->SetTranslate(glm::vec3(0.0, 0.0, 0.1));
 		break;
 	case GLFW_KEY_UP:
-		gun->SetTranslate(glm::vec3(0.0, 0.1, 0.0));
+		gun->SetTranslate(glm::vec3(0.0, 0.0, -0.1));
 		break;
 
 	case GLFW_KEY_SPACE:

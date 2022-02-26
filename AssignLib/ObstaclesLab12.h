@@ -10,12 +10,10 @@ class ObstaclesLab12 : public ObjectBaseLab12
 	GLboolean animate = false;
 	glm::vec3 translate;
 
-
 	void SetUp();
 
 public:
 	ObstaclesLab12();
-	void Collided(glm::vec3 posOfGun);
+	void Collided(glm::vec3 posOfGun, glm::vec3 sizeOfGun);
 	void Update(float deltaT);
-
 };

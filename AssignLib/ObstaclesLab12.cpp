@@ -27,6 +27,7 @@ void ObstaclesLab12::SetUp()
 	// build a set of 3 cubes
 	for (int i = 0 ; i < 3 ; i++)
 	{
+		cubeArray[i].NullTransform();
 		// cubes are green 
 		cubeArray[i].SetColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
 		// are also located at varying points in the z-axis
@@ -41,10 +42,38 @@ void ObstaclesLab12::SetUp()
 	NullTransform(); // this just ensures we've got a base transform to manipulate
 }
 
-// Checking if the bullets or player collided with an obstacle
-void ObstaclesLab12::Collided(glm::vec3 posOfGun)
+// Checking if the bullet collided with an obstacle,
+// we assume here there is no rotation.
+void ObstaclesLab12::Collided(glm::vec3 posOfGun, glm::vec3 sizeOfGun)
 {
-//	posOfGun
+
+	glm::mat4 trans1 = GetTransform();
+	for (int i = 0; i < 3; i++)
+	{
+		glm::mat4 trans2 = cubeArray[i].GetTransform();
+		glm::mat4 trans3 = trans1 + trans2;
+		glm::vec3 pos = glm::vec3(trans3[3][0], trans3[3][1], trans3[3][2]);
+		glm::vec3 size = glm::vec3(trans2[0][0], trans2[1][1], trans2[2][2]);
+
+		int flags = 0;
+		const int hit = 7;
+		for (int a = 0; a < 3; a++) // 3 axies, x, y and z
+		{
+			if (pos[a] - posOfGun[a] < sizeOfGun[a] + size[a] &&
+				pos[a] - posOfGun[a] > -sizeOfGun[a] - size[a])
+			{
+				flags |= 1 << a;
+			}
+		}
+		if (flags == hit) 
+		{
+			cubeArray[i].SetColor(glm::vec4(0.0, 0.0, 0.0, 1.0));
+		}
+		else 
+		{
+			cubeArray[i].SetColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
+		}
+	}
 
 }
 
@@ -57,7 +86,7 @@ void ObstaclesLab12::Update(float deltaT) {
 			delay = 0.0f;
 			count++;
 
-			if (count > 199)
+			if (count > 259)
 			{
 				SetUp();
 				SetTranslate(glm::vec3(0.0, 0.0, -8.0f));
@@ -81,7 +110,5 @@ void ObstaclesLab12::Update(float deltaT) {
 		}
 		else
 			delay += deltaT;
-
-
 
 }
