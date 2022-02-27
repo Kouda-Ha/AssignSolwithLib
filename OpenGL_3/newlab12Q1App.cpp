@@ -3,6 +3,8 @@
 #include <random>
 #include <iostream>
 /*
+* Unit: 6G5Z2102 Computer Graphics (1CWK100 Portfolio)
+* Student Name: Owen Clifford Park (MMU-ID: 19095713)
 * Question 4:
 *			 A demonstration of collision detection and interactive object control via a small 3D 
 *			 dodging game. A "floor" should move towards the viewer, on which a player cube should 
@@ -17,7 +19,7 @@
 
 void NewLab12Q1App::Init()
 {
-	fontPlot = new SOF::FontPlot("Fonts/lucida32");
+	fontPlot = new SOF::FontPlot("Fonts/lucida32"); // Wk5's font used for score and win/lose message
 
 	frame = new FrameLab12();
 
@@ -62,11 +64,11 @@ void NewLab12Q1App::Draw()
 
 	gun->Draw(view, proj);
 	obstacles->Draw(view, proj);
-	fontPlot->DrawString(scoreXPos, scoreYPos, std::to_string(score), textColor);
+	fontPlot->DrawString(scoreXPos, scoreYPos, textToDrawScore + std::to_string(score), textColor);
 
 	if (win)
 	{
-		fontPlot->DrawString(textXPos, textYPos, textToDraw, textColor);
+		fontPlot->DrawString(textXPos, textYPos, textToDrawWin, textColor);
 	}
 	if (lose)
 	{
@@ -78,12 +80,12 @@ void NewLab12Q1App::Draw()
 void NewLab12Q1App::Update(float deltaT) { 
 	if (win)
 	{
-		return; // If reach end of tredmill, game ends.
+		return; // If reach end of tredmill, game ends (Good End).
 	}
 
 	if (lose)
 	{
-		return;
+		return; // If points drop below 0, game ends (Bad End).
 	}
 
 	floor->Update(deltaT);

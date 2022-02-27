@@ -23,11 +23,12 @@ class NewLab12Q1App : public SOF::App
 	glm::vec3 cameraPos = glm::vec3(0.0f, 6.0f, 9.0f);
 	glm::vec3 cameraDir = glm::vec3(0.0f, 0.0f, 0.0f);
 
-	std::string textToDraw = "Congratulations! You reached the goal!";
+	std::string textToDrawWin = "Congratulations! You reached the goal!";
 	std::string textToDrawLose = "Minus points! You Lose!";
-	float textXPos = 50.0f;
+
+	std::string textToDrawScore = "Score: ";	float textXPos = 50.0f;
 	float textYPos = 50.0f;
-	float scoreXPos = 700.0f;
+	float scoreXPos = 600.0f;
 	float scoreYPos = 50.0f;
 	glm::vec4 textColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
