@@ -14,6 +14,7 @@ public:
 
 	void Fire();
 	void Hit();
+	void Reset();
 	void Update(float deltaT);
 	void GunPosition(glm::vec3& trans);
 	void PlayerPosition(glm::vec3& trans);

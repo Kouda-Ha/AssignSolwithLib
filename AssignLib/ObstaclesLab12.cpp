@@ -48,8 +48,9 @@ void ObstaclesLab12::Reset() {
 }
 // Checking if the bullet collided with an obstacle,
 // we assume here there is no rotation.
-void ObstaclesLab12::Collided(glm::vec3 posOfGun, glm::vec3 sizeOfGun)
+bool ObstaclesLab12::Collided(glm::vec3 posOfGun, glm::vec3 sizeOfGun)
 {
+	bool retVal = false;
 	glm::mat4 trans1 = GetTransform();
 	for (int i = 0; i < 3; i++)
 	{
@@ -71,13 +72,14 @@ void ObstaclesLab12::Collided(glm::vec3 posOfGun, glm::vec3 sizeOfGun)
 		if (flags == hit) 
 		{
 			cubeArray[i].SetColor(glm::vec4(0.0, 0.0, 0.0, 1.0));
+			retVal = true;
 		}
 		else 
 		{
 			cubeArray[i].SetColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
 		}
 	}
-
+	return retVal;
 }
 
 // Checking if the Player has collided with an obstacle

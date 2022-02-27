@@ -36,6 +36,32 @@ void GunLab12::Hit()
 
 }
 
+void GunLab12::Reset()
+{
+	animate = false;
+	fire = false;
+
+	glm::mat4 transf = GetTransform();
+	glm::mat4 c1transf = cubeArray[0].GetTransform();
+	transf = glm::translate(transf, glm::vec3(c1transf[3][0], c1transf[3][1], c1transf[3][2]));
+	SetTransform(transf);
+
+	float y = 0.0f;
+	for (int i = 0; i < 2; i++)
+	{
+		// reset their transform
+		cubeArray[i].NullTransform();
+		// are also located at varying points in the z-axis
+		cubeArray[i].SetTranslate(glm::vec3(0, y, 0));
+		// and are mostly cubic (but a bit extended in Z)
+		cubeArray[i].SetScale(glm::vec3(0.4, 0.4, 0.5));
+
+		y += 0.8f;
+
+	}
+	count = 0;
+}
+
 void GunLab12::SetTranslate(glm::vec3 trans)
 {
 	if (!fire)
@@ -89,28 +115,7 @@ void GunLab12::Update(float deltaT) {
 
 			if (count > 40)
 			{
-				animate = false;
-				fire = false;
-
-				glm::mat4 transf = GetTransform();
-				glm::mat4 c1transf = cubeArray[0].GetTransform();
-				transf = glm::translate(transf, glm::vec3(c1transf[3][0], c1transf[3][1], c1transf[3][2]));
-				SetTransform(transf);
-
-				float y = 0.0f;
-				for (int i = 0; i < 2; i++)
-				{
-					// reset their transform
-					cubeArray[i].NullTransform();
-					// are also located at varying points in the z-axis
-					cubeArray[i].SetTranslate(glm::vec3(0, y, 0));
-					// and are mostly cubic (but a bit extended in Z)
-					cubeArray[i].SetScale(glm::vec3(0.4, 0.4, 0.5));
-
-					y += 0.8f;
-
-				}
-				count = 0;
+				Reset();
 			}
 		}
 		delay = 0.0f;

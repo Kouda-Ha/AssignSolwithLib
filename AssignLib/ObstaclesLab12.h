@@ -16,7 +16,7 @@ class ObstaclesLab12 : public ObjectBaseLab12
 public:
 	ObstaclesLab12();
 	void Reset();
-	void Collided(glm::vec3 posOfGun, glm::vec3 sizeOfGun);
+	bool Collided(glm::vec3 posOfGun, glm::vec3 sizeOfGun);
 	bool CollidePlayer(glm::vec3 posOfGun, glm::vec3 sizeOfGun);
 	void Update(float deltaT);
 };

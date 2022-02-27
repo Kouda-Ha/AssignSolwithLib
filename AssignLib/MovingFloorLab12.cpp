@@ -1,19 +1,14 @@
 #include "stdafx.h"
 #include "MovingFloorLab12.h"
 
-
-
-
 MovingFloorLab12::MovingFloorLab12()
 {
-
 	// build a set of 20 cubes
 	float z = 0.0f;
 	for (int i = 0; i < 20; i++)
 	{
 		CubeLab12 cube = CubeLab12();
 		
-
 		// cubes are yellow 
 		cube.SetColor(glm::vec4(1.0, 1.0, 0.0, 1.0));
 		// are also located at varying points in the z-axis
@@ -25,10 +20,7 @@ MovingFloorLab12::MovingFloorLab12()
 
 	}
 	NullTransform(); // this just ensures we've got a base transform to manipulate
-
 }
-
-
 
 // responses to the passing of time. Called with before each draw()
 void MovingFloorLab12::Update(float deltaT) {
