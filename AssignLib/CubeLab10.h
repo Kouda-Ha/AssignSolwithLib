@@ -23,6 +23,7 @@ public:
 	void setColor(const glm::vec4 &color);
 
 	void NullTransform();
+	glm::mat4 getTransform() { return modelTransform; }
 	void SetScale(const glm::vec3 &scale);
 	void SetTranslate(const glm::vec3 &trans);
 	void SetXRotation(float rot);

@@ -14,7 +14,7 @@ class NewLab10Q1App : public SOF::App
 	GLfloat cameraZAngle = 0.0f;
 	GLint axis = 1;
 	glm::vec3  theta = glm::vec3(0.0, 0.0, 0.0);
-	GLfloat legmove = -0.025f;
+	GLfloat armMove = -0.025f;
 	int count = 0;
 
 public:
