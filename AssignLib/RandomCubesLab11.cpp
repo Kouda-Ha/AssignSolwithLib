@@ -2,9 +2,6 @@
 #include "RandomCubesLab11.h"
 #include <time.h>
 
-
-
-
 RandomCubesLab11::RandomCubesLab11(int num)
 {
 

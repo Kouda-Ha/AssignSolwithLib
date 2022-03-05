@@ -25,7 +25,7 @@ MovingFloorLab12::MovingFloorLab12()
 // responses to the passing of time. Called with before each draw()
 void MovingFloorLab12::Update(float deltaT) {
 
-	if (delay >= 0.05f)
+	if (delay >= dragFactor)
 	{
 		SetTranslate(glm::vec3(0.0, 0.0, 0.08f));
 		delay = 0.0f;

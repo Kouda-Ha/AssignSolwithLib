@@ -2,7 +2,7 @@
 #include "ObjectBaseLab12.h"
 
 
-
+GLfloat ObjectBaseLab12::dragFactor;
 
 ObjectBaseLab12::ObjectBaseLab12()
 {

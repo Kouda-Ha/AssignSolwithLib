@@ -113,7 +113,7 @@ bool ObstaclesLab12::CollidePlayer(glm::vec3 posOfGun, glm::vec3 sizeOfGun)
 
 // responses to the passing of time. Called with before each draw()
 void ObstaclesLab12::Update(float deltaT) {
-		if (delay >= 0.05f)
+		if (delay >= dragFactor)
 		{
 			SetTranslate(glm::vec3(0.0, 0.0, 0.08f));
 			delay = 0.0f;
@@ -129,10 +129,10 @@ void ObstaclesLab12::Update(float deltaT) {
 			for (int i = 0; i < 3; i++)
 			{
 				glm::mat4 trans2 = cubeArray[i].GetTransform();
-				double x = trans1[3][0] + trans2[3][0];
-				double z = trans1[3][2] + trans2[3][2];
+				float x = trans1[3][0] + trans2[3][0];
+				float z = trans1[3][2] + trans2[3][2];
 				
-				if (x >= -2.5 && x <= 2.5 && z >= -9.0 && z <= 6.0)
+				if (x >= -2.5f && x <= 2.5f && z >= -9.0f && z <= 6.0f)
 					cubeArray[i].SetRender(true);
 				else
 					cubeArray[i].SetRender(false);	

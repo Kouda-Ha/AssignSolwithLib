@@ -4,13 +4,13 @@
 
 class ObjectBaseLab12
 {
-
 protected:
 	// hander class for a list cubes
 	std::vector<CubeLab12> cubeArray;
 	glm::mat4 baseTransform;
 
 public:
+	static GLfloat dragFactor;
 	ObjectBaseLab12();
 	
 	void SetTransform(glm::mat4 &transform);

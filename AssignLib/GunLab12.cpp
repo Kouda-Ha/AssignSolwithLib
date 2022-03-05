@@ -94,16 +94,20 @@ void GunLab12::PlayerPosition(glm::vec3& trans)
 	trans = transf + c1transf;
 }
 
+void GunLab12::press(GunLab12::Direction dir, bool isKeyPress) {
+	direction[dir] = isKeyPress;
+}
+
 // responses to the passing of time. Called with before each draw()
 void GunLab12::Update(float deltaT) {
-	if (delay >= 0.05f)
+	if (delay >= dragFactor)
 	{
 		ObjectBaseLab12::SetTranslate(glm::vec3(0.0, 0.0, 0.08f));
 		glm::mat4 transform = GetTransform();
 		transform[3][2] -= 0.08f;
-		if(transform[3][2] > 5.9)
+		if(transform[3][2] > 5.9f)
 		{
-			transform[3][2] = 5.9;
+			transform[3][2] = 5.9f;
 			SetTransform(transform);
 		}
 
@@ -122,4 +126,24 @@ void GunLab12::Update(float deltaT) {
 	}
 	else
 		delay += deltaT;
+
+	if (delayMovement >= dragFactorMovement)
+	{
+		GLfloat speed = 0.2f;
+		if (direction[UP] == true) {
+			SetTranslate(glm::vec3(0.0, 0.0, -speed));
+		}
+		if (direction[RIGHT] == true) {
+			SetTranslate(glm::vec3(speed, 0.0, 0.0));
+		}
+		if (direction[DOWN] == true) {
+			SetTranslate(glm::vec3(0.0, 0.0, speed));
+		}
+		if (direction[LEFT] == true) {
+			SetTranslate(glm::vec3(-speed, 0.0, 0.0));
+		}
+		delayMovement = 0.0f;
+	}
+	else
+		delayMovement += deltaT;
 }
