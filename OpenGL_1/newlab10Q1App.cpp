@@ -49,20 +49,33 @@ void NewLab10Q1App::Init()
 void NewLab10Q1App::Update(float deltaT)
 {
 	count += deltaT;
-	
+	constexpr float pi = glm::pi<float>();
+	if (upperarmAnimate == true && upperarmTime < pi) {
+		upperarmTime += deltaT;
+	}
+	else if (upperarmAnimate == false && upperarmTime > 0) {
+		upperarmTime -= deltaT;
+	}
+
+	if (forearmAnimate == true && forearmTime < pi) {
+		forearmTime += deltaT;
+	}
+	else if (forearmAnimate == false && forearmTime > 0) {
+		forearmTime -= deltaT;
+	}
 
 	cubes[BASE]->NullTransform();
 	cubes[BASE]->SetYRotation(count * 10);
 
 	cubes[UPPER_ARM]->NullTransform();
-	cubes[UPPER_ARM]->SetZRotation(glm::sin(count) * 90);
+	cubes[UPPER_ARM]->SetZRotation(glm::cos(upperarmTime) * 90);
 
 	cubes[ELBOW]->NullTransform();
 	cubes[ELBOW]->SetTranslate(glm::vec3(0, 5, 0));
-	cubes[ELBOW]->SetZRotation((1 + glm::cos(count)) / 2 * 180 / 4);
+	cubes[ELBOW]->SetZRotation((1 + glm::cos(forearmTime)) / 2 * 180 / 4);
 	cubes[FOREARM]->NullTransform();
 	cubes[FOREARM]->SetTranslate(glm::vec3(0, 0, 0));
-	cubes[FOREARM]->SetZRotation((1 + glm::cos(count)) /2 * 180 / 2);
+	cubes[FOREARM]->SetZRotation((1 + glm::cos(forearmTime)) /2 * 180 / 2);
 
 }
 
@@ -100,10 +113,12 @@ void NewLab10Q1App::MouseButtonCallback(GLFWwindow* window, int button, int acti
 	if (button == 0 && action == 0) // left mouse click
 	{
 		std::cout << "hit L button" << std::endl;
+		upperarmAnimate = !upperarmAnimate;
 	}
 
 	if (button == 1 && action == 0) // right mouse click
 	{
+		forearmAnimate = !forearmAnimate;
 		std::cout << "hit R button" << std::endl;
 	}
 }

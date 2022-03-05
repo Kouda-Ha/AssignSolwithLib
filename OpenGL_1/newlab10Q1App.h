@@ -25,6 +25,11 @@ class NewLab10Q1App : public SOF::App
 	GLfloat armMove = -0.025f;
 	GLfloat count = 0;
 
+	bool upperarmAnimate = false;
+	GLfloat upperarmTime = 0;
+	bool forearmAnimate = false;
+	GLfloat forearmTime = 0;
+
 public:
 	virtual void Draw();
 	virtual void Init();
