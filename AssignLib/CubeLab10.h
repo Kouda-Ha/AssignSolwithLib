@@ -12,6 +12,7 @@ class CubeLab10
 
 	// per instance data
 	glm::mat4 modelTransform;
+	glm::mat4 modelTransformScale;
 	glm::vec4 cubeColor;
 	GLboolean useColor = false;
 
@@ -24,7 +25,7 @@ public:
 
 	void NullTransform();
 	glm::mat4 getTransform() { return modelTransform; }
-	void SetScale(const glm::vec3 &scale);
+	void SetScale(const glm::vec3 &scale, bool raiseToFloor = true);
 	void SetTranslate(const glm::vec3 &trans);
 	void SetXRotation(float rot);
 	void SetYRotation(float rot);

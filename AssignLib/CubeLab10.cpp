@@ -81,7 +81,7 @@ void CubeLab10::Draw( const glm::mat4 &view, const glm::mat4 &proj )
 	glm::vec3 cameraPosition = (glm::vec3)(glm::inverse(view)[3]);
 	pShader->SetUniformMat4("vpm", proj*view );
 	if (baseTransform != nullptr) {
-		glm::mat4 combTrans = *baseTransform * modelTransform;
+		glm::mat4 combTrans = *baseTransform * modelTransform * modelTransformScale ;
 		pShader->SetUniformMat4("mdm", combTrans);
 	}
 	else
@@ -110,9 +110,11 @@ void CubeLab10::NullTransform()
 	modelTransform = glm::mat4();
 }
 
-void CubeLab10::SetScale(const glm::vec3 &scale) 
+void CubeLab10::SetScale(const glm::vec3 &scale, bool raiseToFloor) 
 {
-	modelTransform = glm::scale(modelTransform, scale);
+	if (raiseToFloor) 
+		modelTransformScale = glm::translate(modelTransformScale, glm::vec3(0.0f, scale[1], 0.0f));
+	modelTransformScale = glm::scale(modelTransformScale, scale);
 }
 
 
