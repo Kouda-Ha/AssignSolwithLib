@@ -1,5 +1,6 @@
 #pragma once
 #include "SOF.h"
+#include "timer.h"
 #include "CubeLab12.h"
 #include "FrameLab12.h"
 #include "MovingFloorLab12.h"
@@ -20,6 +21,7 @@ class NewLab12Q1App : public SOF::App
 	bool lose = false;
 	int score = 0;
 	GLfloat delay = 0;
+	SOF::Timer timer = SOF::Timer();
 	glm::vec3 cameraPos = glm::vec3(0.0f, 6.0f, 9.0f);
 	glm::vec3 cameraDir = glm::vec3(0.0f, 0.0f, 0.0f);
 
@@ -31,6 +33,7 @@ class NewLab12Q1App : public SOF::App
 	float scoreXPos = 600.0f;
 	float scoreYPos = 50.0f;
 	glm::vec4 textColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	GLfloat& dragFactor = ObjectBaseLab12::dragFactor;
 
 public:
 	virtual void Draw();

@@ -42,6 +42,9 @@ void NewLab12Q1App::Init()
 	obstacles = new ObstaclesLab12();
 	obstacles->SetTranslate(glm::vec3(0.0, 0.0, -8.0));
 
+	dragFactor = 0.05f; // for speed
+	timer.Reset();
+
 	// some render states
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
@@ -77,7 +80,7 @@ void NewLab12Q1App::Draw()
 }
 
 // responses to the passing of time. Called with before each draw()
-void NewLab12Q1App::Update(float deltaT) { 
+void NewLab12Q1App::Update(float deltaT) {
 	if (win)
 	{
 		return; // If reach end of tredmill, game ends (Good End).
@@ -124,21 +127,19 @@ void NewLab12Q1App::Update(float deltaT) {
 		win = true;
 	}
 
-//	std::cout << cameraPos[0] << " " << cameraPos[1] << " " << cameraPos[2] << " " << std::endl; // cam position
+	if (timer.Elapsed() > 5.0f)
+	{
+		timer.Reset();
+		dragFactor -= 0.005f; // every 5 seconds, speed up level slightly
+		if (dragFactor < 0.02f)
+		{
+			dragFactor = 0.02f;
+		}
+	}
 }
 
 void NewLab12Q1App::KeyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
-	if (win)
-	{
-		return; // If reach end of tredmill, game ends.
-	}
-
-	if (lose)
-	{
-		return;
-	}
-
 	// Moving camera angle
 	switch (key) {
 	case GLFW_KEY_A:
@@ -179,17 +180,18 @@ void NewLab12Q1App::KeyCallback(GLFWwindow* window, int key, int scanCode, int a
 		break;
 
 	// Gun(Player) controller (Arrow keys to move, Space to shoot bullet)
+	// action, 0 = key release, 1 = key press, 2 = key held
 	case GLFW_KEY_LEFT:
-		gun->SetTranslate(glm::vec3(-0.1, 0.0, 0.0));
+		gun->press(GunLab12::Direction::LEFT, action > 0);
 		break;
 	case GLFW_KEY_RIGHT:
-		gun->SetTranslate(glm::vec3(0.1, 0.0, 0.0));
+		gun->press(GunLab12::Direction::RIGHT, action > 0);
 		break;
 	case GLFW_KEY_DOWN:
-		gun->SetTranslate(glm::vec3(0.0, 0.0, 0.1));
+		gun->press(GunLab12::Direction::DOWN, action > 0);
 		break;
 	case GLFW_KEY_UP:
-		gun->SetTranslate(glm::vec3(0.0, 0.0, -0.1));
+		gun->press(GunLab12::Direction::UP, action > 0);
 		break;
 
 	// Fire gun bullet
