@@ -1,10 +1,8 @@
 #include "stdafx.h"
 #include "FrameLab12.h"
 
-
 FrameLab12::FrameLab12()
 {
-
 	// build a set of 3 cubes
 	for (int i = 0; i < 3; i++)
 	{
@@ -23,7 +21,4 @@ FrameLab12::FrameLab12()
 	cubeArray[2].SetScale(glm::vec3(0.1, 0.1, 3.0));
 
 	NullTransform(); // this just ensures we've got a base transform to manipulate
-
 }
-
-

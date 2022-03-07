@@ -73,7 +73,6 @@ void CubeLab10::Draw( const glm::mat4 &view, const glm::mat4 &proj )
 	} else
 		pShader->SetUniformInt("useFixedColor", 0);
 
-
 	// camera
 	glm::vec3 cameraPosition = (glm::vec3)(glm::inverse(view)[3]);
 	pShader->SetUniformMat4("vpm", proj*view );
@@ -86,8 +85,6 @@ void CubeLab10::Draw( const glm::mat4 &view, const glm::mat4 &proj )
 
 	// draw the geometry
 	pGeometry->DrawPrimitives();
-
-
 }
 
 void CubeLab10::setColor(const glm::vec4 &color)
@@ -101,7 +98,6 @@ void CubeLab10::SetTransform(const glm::mat4 &transform)
 	modelTransform = transform; 
 }
 
-
 void CubeLab10::NullTransform() 
 {
 	modelTransform = glm::mat4();
@@ -113,7 +109,6 @@ void CubeLab10::SetScale(const glm::vec3 &scale, bool raiseToFloor)
 		modelTransformScale = glm::translate(modelTransformScale, glm::vec3(0.0f, scale[1], 0.0f));
 	modelTransformScale = glm::scale(modelTransformScale, scale);
 }
-
 
 void CubeLab10::SetTranslate(const glm::vec3 &trans) 
 {

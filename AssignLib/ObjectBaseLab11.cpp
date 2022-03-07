@@ -1,14 +1,10 @@
 #include "stdafx.h"
 #include "ObjectBaseLab11.h"
 
-
-
-
 ObjectBaseLab11::ObjectBaseLab11()
 {
 	baseTransform = glm::mat4();
 }
-
 
 void ObjectBaseLab11::Draw(const glm::mat4 &view, const glm::mat4 &proj )
 {
@@ -52,7 +48,6 @@ void ObjectBaseLab11::SetScale(const glm::vec3 &scale)
 {
 	baseTransform = glm::scale(baseTransform, scale);
 }
-
 
 void ObjectBaseLab11::SetTranslate(const glm::vec3 &trans) 
 {
