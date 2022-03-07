@@ -1,8 +1,17 @@
 #include "stdafx.h"
 #include "newlab10Q1App.h"
 #include <random>
-
-
+/*
+* Unit: 6G5Z2102 Computer Graphics (1CWK100 Portfolio)
+* Student Name: Owen Clifford Park (MMU-ID: 19095713)
+* Question 3: 
+*			A demonstration of the nature of articulated motion.As a minimum, this will display a composite object built
+*			of two components, a baseand arm.It is acceptable that these be simple coloured boxes.At a minimum, the
+*			base should translateand both should both rotate, so that the arms is moved relative to the base.Additional
+*			marks will be awarded for the inclusion of additional components(so an upper and lower arm, with the upper
+*			arm connected to the lower arm with an \elbow"), and for the presence of interactive movement (preferably via
+*			the mouse).
+*/
 void NewLab10Q1App::Init()
 {
 	// build a set of 4 cubes (Base, Upper arm, Elbow, Lower arm)
@@ -11,9 +20,6 @@ void NewLab10Q1App::Init()
 		CubeLab10 *cube = new CubeLab10();
 		cubes.push_back(cube);
 	}
-
-	// if we wanted to move the object, we'd make a call to baseTransform here
-	// but we can wait until the draw() for that.
 
 	// set up the relative shapes - use matrix tranforms internally
 	// model matrix - Base cube (red)
@@ -43,7 +49,6 @@ void NewLab10Q1App::Init()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
-
 
 // responses to the passing of time. Called with before each draw()
 void NewLab10Q1App::Update(float deltaT)
@@ -136,16 +141,7 @@ void NewLab10Q1App::Draw()
 	glm::mat4 model = glm::mat4();
 	model = glm::translate(model, glm::vec3(0.0f, -5.0, -10.0f));
 	model = glm::scale(model, glm::vec3(1.5, 1.5, 1.5));
-//	model = glm::rotate(model, (float)glm::radians(theta[0]), glm::vec3(1.0f, 0.0f, 0.0f));
-//	model = glm::rotate(model, (float)glm::radians(theta[1]), glm::vec3(0.0f, 1.0f, 0.0f));
-//	model = glm::rotate(model, (float)glm::radians(theta[2]), glm::vec3(0.0f, 0.0f, 1.0f));
 	cubes[0]->SetBaseTransform(model);
-	
-	
-	// internal animation (move the legs...)
-//	cubes[1]->SetTranslate(glm::vec3(0, +armMove, 0));
-//	cubes[3]->SetTranslate(glm::vec3(0, -armMove, 0));
-	
 	
 	// draw the cubes
 	glm::mat4 cubeTrans;

@@ -12,7 +12,6 @@ enum {
 
 class NewLab10Q1App : public SOF::App
 {
-
 	std::vector<CubeLab10*> cubes;
 
 	GLfloat delay = 0;

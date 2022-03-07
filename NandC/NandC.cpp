@@ -2,6 +2,10 @@
 #include "NandC.h"
 
 
+// You're in the wrong place, I did demonstration questions 3 (articulated motion) and 4 (dodging game), please see
+// OpenGL_1 and OpenGL_3 for my solutions to the coursework, thank you :)
+
+
 NandC::NandC()
 {
 	m_playing = true;

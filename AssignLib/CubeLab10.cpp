@@ -2,7 +2,6 @@
 #include "CubeLab10.h"
 
 // statics
-
 SOF::ShaderProgram *CubeLab10::pShader = nullptr;
 SOF::Geometry *CubeLab10::pGeometry = nullptr;
 glm::mat4 *CubeLab10::baseTransform = nullptr;
@@ -51,9 +50,7 @@ CubeLab10::CubeLab10()
 		pGeometry->AddAttribute(vertexPos, "vertexPos");
 		pGeometry->AddAttribute(vertexColor, "vertexColor");
 		pGeometry->Finalize(pShader);
-
 	}
-
 }
 
 void CubeLab10::SetBaseTransform(glm::mat4 &transform)
