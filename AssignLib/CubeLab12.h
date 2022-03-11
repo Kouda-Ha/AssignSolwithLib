@@ -4,7 +4,6 @@
 class CubeLab12
 {
 	// a coloured cube
-
 	// shared resources betweeen all instances
 	static SOF::ShaderProgram *pShader;
 	static SOF::Geometry *pGeometry;
@@ -27,7 +26,6 @@ public:
 
 	void DrawLines(const glm::mat4 &view, const glm::mat4 &proj);
 	void DrawLines(const glm::mat4 &view, const glm::mat4 &proj, const glm::mat4 &base);
-
 
 	void SetColor(const glm::vec4 &color);
 	void SetRender(const GLboolean r);

@@ -27,12 +27,12 @@ void NewLab10Q1App::Init()
 	cubes[BASE]->SetScale(glm::vec3(0.6, 0.6, 0.6), false);
 	cubes[BASE]->setColor(glm::vec4(1.0, 0.0, 0.0, 0.2));
 
-	// model matrix - Lower Arm Cube (blue)
+	// model matrix - Upper Arm Cube (blue)
 	cubes[UPPER_ARM]->SetScale(glm::vec3(0.5, 2.5, 0.5));
 	cubes[UPPER_ARM]->SetTranslate(glm::vec3(0, 0, 0));
 	cubes[UPPER_ARM]->setColor(glm::vec4(0.0, 0.0, 1.0, 1.0));
 
-	// model matrix - Upper Arm Cube (green)
+	// model matrix - Forearm/Lower Arm Cube (green)
 	cubes[FOREARM]->SetScale(glm::vec3(0.5, 2.5, 0.5));
 	cubes[FOREARM]->SetTranslate(glm::vec3(0, 0, 0));
 	cubes[FOREARM]->setColor(glm::vec4(0.0, 1.0, 0.0, 1.0));
@@ -78,6 +78,7 @@ void NewLab10Q1App::Update(float deltaT)
 	cubes[ELBOW]->NullTransform();
 	cubes[ELBOW]->SetTranslate(glm::vec3(0, 5, 0));
 	cubes[ELBOW]->SetZRotation((1 + glm::cos(forearmTime)) / 2 * 180 / 4);
+	
 	cubes[FOREARM]->NullTransform();
 	cubes[FOREARM]->SetTranslate(glm::vec3(0, 0, 0));
 	cubes[FOREARM]->SetZRotation((1 + glm::cos(forearmTime)) /2 * 180 / 2);
@@ -109,7 +110,7 @@ void NewLab10Q1App::KeyCallback(GLFWwindow* window, int key, int scanCode, int a
 
 }
 
-// processes keyboard events
+// processes mouse events
 void NewLab10Q1App::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods) 
 {
 	double xpos, ypos;
@@ -117,14 +118,12 @@ void NewLab10Q1App::MouseButtonCallback(GLFWwindow* window, int button, int acti
 	std::cout << button << " " << action << " " << mods << " " << xpos << " " << ypos << std::endl;
 	if (button == 0 && action == 0) // left mouse click
 	{
-		std::cout << "hit L button" << std::endl;
-		upperarmAnimate = !upperarmAnimate;
+			upperarmAnimate = !upperarmAnimate;
 	}
 
 	if (button == 1 && action == 0) // right mouse click
 	{
 		forearmAnimate = !forearmAnimate;
-		std::cout << "hit R button" << std::endl;
 	}
 }
 

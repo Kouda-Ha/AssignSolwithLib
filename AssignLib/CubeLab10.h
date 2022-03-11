@@ -4,7 +4,6 @@
 class CubeLab10
 {
 	// a coloured cube
-
 	// shared resources betweeen all instances
 	static SOF::ShaderProgram *pShader;
 	static SOF::Geometry *pGeometry;

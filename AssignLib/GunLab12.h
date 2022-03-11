@@ -5,6 +5,7 @@
 class GunLab12 : public ObjectBaseLab12
 {
 public:
+	// Using enum to make it more user friendly way naming things, "UP", "DOWN", etc
 	enum Direction {
 		UP, RIGHT, DOWN, LEFT
 	};
